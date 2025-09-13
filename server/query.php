@@ -39,11 +39,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['category']) && isset($
     }
     $sql = $sql . $whereClause;
     $result = execute($sql);
+    $_SESSION['found'];
     if (mysqli_num_rows($result) > 0) {
         $_SESSION['STUDENT'] = array();
         while ($row = mysqli_fetch_assoc($result)) {
             // print_r($row);
-            $_SESSION['found'] = true;
+            $_SESSION['found'] = 1;
 
             // Collect data
             if ($table == "user") {
@@ -73,13 +74,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['category']) && isset($
                 //     echo $i . "\n";
                 // }
             }
-
+            
+            // print_r($_SESSION);
             header("Location: ../pages/studentInfo.php");
             // exit();
         }
         // print_r($_SESSION['STUDENT']);
     } else {
-        $_SESSION['found'] = false;
+        $_SESSION['found'] = 0;
+        // print_r($_SESSION);
         header("Location: ../index.php");
         // exit();
     }

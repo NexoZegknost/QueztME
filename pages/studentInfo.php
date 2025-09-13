@@ -2,7 +2,7 @@
 require_once("../server/classes.php");
 session_start();
 require_once("../server/function.php");
-if (isset($_SESSION['STUDENT'])) {
+if (isset($_SESSION['STUDENT']) && isset($_SESSION['found']) && $_SESSION['found'] == true) {
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -19,8 +19,7 @@ if (isset($_SESSION['STUDENT'])) {
         <link rel="stylesheet" href="../assets/css/style.css" />
         <link rel="stylesheet" href="../assets/css/responsive.css" />
 
-        <!-- Font awesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="../assets/scripts/index.js"></script>
     </head>
 
     <body>

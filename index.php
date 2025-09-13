@@ -15,45 +15,61 @@ session_start();
   <!-- Custom CSS -->
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="assets/css/responsive.css" />
+
+  <script src="assets/scripts/index.js" defer></script>
 </head>
 
 <body>
   <main class="w3-card-4">
+
+    <div id="error-modal" class="w3-modal">
+      <div class="w3-modal-content w3-animate-top w3-card-4 w3-round">
+        <header class="w3-container w3-red w3-round">
+          <span onclick="document.getElementById('error-modal').style.display='none'"
+            class="w3-btn w3-display-topright w3-round">
+            &times;
+          </span>
+          <h2>&times; Thông báo lỗi</h2>
+        </header>
+        <div class="w3-container">
+          <p>Không tìm thấy nội dung !</p>
+        </div>
+      </div>
+    </div>
+    </div>
+
     <div class="w3-container w3-blue">
       <h1 class="w3-xxlarge w3-center">Tìm kiếm thông tin</h1>
     </div>
-    <form
-      method="post"
-      action="server/query.php"
-      class="w3-container w3-border w3-padding-16">
+    <form method="post" action="server/query.php" class="w3-container w3-border w3-padding-16">
       <div class="w3-container w3-row w3-section" style="width: 100%">
-        <select
-          name="category"
-          id=""
-          class="w3-select w3-col w3-center"
-          style="width: 25%">
+        <select name="category" id="" class="w3-select w3-col w3-center" style="width: 25%">
           <option disabled value="allType">Tất cả</option>
           <option value="fullName">Họ và tên</option>
           <option value="studentID">Mã số học sinh</option>
-          <option value="identityCode">CCCD</option>
-          <option value="className">Lớp</option>
+          <option disabled value="identityCode">CCCD</option>
+          <option disabled value="className">Lớp</option>
         </select>
         <div class="w3-rest">
-          <input
-            class="w3-input font-class"
-            type="text"
-            name="search-input"
-            id="search-box"
+          <input class="w3-input font-class" type="text" name="search-input" id="search-box"
             placeholder="Nhập thông tin..." />
         </div>
       </div>
-      <button
-        type="submit"
-        class="w3-btn w3-info w3-ripple w3-hover-blue w3-block w3-round w3-padding">
+      <button type="submit" class="w3-btn w3-info w3-ripple w3-hover-blue w3-block w3-round w3-padding">
         Search
       </button>
     </form>
   </main>
+
+  <?php
+  if ($_SESSION['found'] == 0) { ?>
+    <script>
+      document.getElementById("error-modal").style.display = "block";
+    </script>
+  <?php
+  }
+  ?>
+
 </body>
 
 </html>
