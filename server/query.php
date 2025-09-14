@@ -39,7 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['category']) && isset($
     }
     $sql = $sql . $whereClause;
     $result = execute($sql);
-    $_SESSION['found'];
     if (mysqli_num_rows($result) > 0) {
         $_SESSION['STUDENT'] = array();
         while ($row = mysqli_fetch_assoc($result)) {
@@ -49,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['category']) && isset($
             // Collect data
             if ($table == "user") {
 
-                $collectSql = "SELECT * FROM biography WHERE `uid` = '{$row['uid']}' ";
+                $collectSql = "SELECT * FROM biography WHERE bid = '{$row['uid']}' ";
                 $collectRes = execute($collectSql);
                 $collectData = mysqli_fetch_assoc($collectRes);
 
@@ -69,13 +68,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['category']) && isset($
                     $collectData['phoneNumber'],
                     $class['classname'],
                 );
-
-                // foreach ($_SESSION['STUDENT'] as $i) {
-                //     echo $i . "\n";
-                // }
             }
-            
-            // print_r($_SESSION);
+
             header("Location: ../pages/studentInfo.php");
             // exit();
         }
