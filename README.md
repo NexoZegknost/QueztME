@@ -11,7 +11,7 @@ Student management system develop by @NexoZegknost.
 To deploy this project run
 
 ```bash
-  localhost/studentManagement/index.php
+  localhost/QueztME/index.php
 ```
 
 
